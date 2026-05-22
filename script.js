@@ -33,7 +33,7 @@ const menuData = [
 ];
 
 const categories = ["Burgers", "Pizza", "Sandwich", "Momos", "Pasta", "Fries & Snacks", "Drinks", "Combo Offers"];
-const cafeWhatsAppNumber = "917300706836";
+const cafeWhatsAppNumber = "917830143379";
 let cart = [];
 let activeCategory = categories[0];
 
