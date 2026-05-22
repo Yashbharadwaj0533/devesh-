@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Friend's Zone Cafe | Fresh Taste, Fast Delivery</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="site-header">
+        <nav class="navbar" aria-label="Primary navigation">
+            <a class="brand" href="#home" aria-label="Friend's Zone Cafe home">
+                <span class="brand-mark"><i class="fa-solid fa-mug-hot" aria-hidden="true"></i></span>
+                <span>Friend's Zone Cafe</span>
+            </a>
+            <button class="cart-trigger" id="cartTrigger" type="button" aria-label="Open cart">
+                <i class="fa-solid fa-bag-shopping" aria-hidden="true"></i>
+                <span class="cart-badge" id="cartBadge">0</span>
+            </button>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero" id="home" aria-labelledby="heroTitle">
+            <div class="hero-content">
+                <p class="eyebrow">Fresh Taste, Fast Delivery</p>
+                <h1 id="heroTitle">Friend's Zone Cafe</h1>
+                <div class="tagline-list" aria-label="Cafe highlights">
+                    <span>Made With Love at Friend's Zone Cafe</span>
+                    <span>Delicious Food at Your Doorstep</span>
+                </div>
+                <a class="hero-cta" href="#menu">
+                    <span>Order Now</span>
+                    <i class="fa-solid fa-arrow-down" aria-hidden="true"></i>
+                </a>
+            </div>
+        </section>
+
+        <section class="menu-section" id="menu" aria-labelledby="menuTitle">
+            <div class="section-heading">
+                <p class="eyebrow">Hot picks, fair prices</p>
+                <h2 id="menuTitle">Explore Our Menu</h2>
+            </div>
+
+            <div class="category-shell" aria-label="Menu categories">
+                <div class="category-bar" id="categoryBar"></div>
+            </div>
+
+            <div class="product-grid" id="productGrid" aria-live="polite"></div>
+        </section>
+    </main>
+
+    <aside class="cart-drawer" id="cartDrawer" aria-labelledby="cartTitle" aria-hidden="true">
+        <div class="cart-panel">
+            <div class="cart-head">
+                <div>
+                    <p class="eyebrow">Your order</p>
+                    <h2 id="cartTitle">Cart Summary</h2>
+                </div>
+                <button class="icon-button" id="closeCart" type="button" aria-label="Close cart">
+                    <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+                </button>
+            </div>
+
+            <div class="cart-items" id="cartItems"></div>
+
+            <div class="cart-total">
+                <span>Total Amount</span>
+                <strong id="cartTotal">&#8377;0</strong>
+            </div>
+
+            <form class="checkout-form" id="checkoutForm">
+                <label>
+                    Customer Name
+                    <input type="text" id="customerName" name="customerName" autocomplete="name" required>
+                </label>
+                <label>
+                    Mobile Number
+                    <input type="tel" id="mobileNumber" name="mobileNumber" inputmode="numeric" pattern="[6-9][0-9]{9}" placeholder="10-digit mobile number" required>
+                </label>
+                <label>
+                    Delivery Address
+                    <textarea id="deliveryAddress" name="deliveryAddress" rows="3" required></textarea>
+                </label>
+                <fieldset>
+                    <legend>Payment Method</legend>
+                    <label class="radio-row">
+                        <input type="radio" name="paymentMethod" value="Cash on Delivery" checked>
+                        Cash on Delivery
+                    </label>
+                    <label class="radio-row">
+                        <input type="radio" name="paymentMethod" value="Online Payment">
+                        Online Payment
+                    </label>
+                </fieldset>
+                <label>
+                    Special Instructions
+                    <textarea id="specialInstructions" name="specialInstructions" rows="2" placeholder="Optional"></textarea>
+                </label>
+                <p class="form-message" id="formMessage" role="alert"></p>
+                <button class="place-order" type="submit">
+                    <i class="fa-solid fa-circle-check" aria-hidden="true"></i>
+                    Send Order on WhatsApp
+                </button>
+            </form>
+        </div>
+    </aside>
+
+    <div class="modal-backdrop" id="modalBackdrop" aria-hidden="true">
+        <section class="success-modal" role="dialog" aria-modal="true" aria-labelledby="successTitle">
+            <button class="icon-button modal-close" id="modalClose" type="button" aria-label="Close confirmation">
+                <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+            </button>
+            <div class="success-icon">
+                <i class="fa-solid fa-check" aria-hidden="true"></i>
+            </div>
+            <h2 id="successTitle">Order Success</h2>
+            <div id="confirmationContent"></div>
+            <button class="continue-button" id="continueShopping" type="button">
+                Close / Continue Shopping
+            </button>
+        </section>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
