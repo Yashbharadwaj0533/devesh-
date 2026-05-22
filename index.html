@@ -17,6 +17,10 @@
                 <span class="brand-mark"><i class="fa-solid fa-mug-hot" aria-hidden="true"></i></span>
                 <span>Friend's Zone Cafe</span>
             </a>
+            <div class="nav-links" aria-label="Page links">
+                <a href="#menu">Menu</a>
+                <a href="#reviews">Reviews</a>
+            </div>
             <button class="cart-trigger" id="cartTrigger" type="button" aria-label="Open cart">
                 <i class="fa-solid fa-bag-shopping" aria-hidden="true"></i>
                 <span class="cart-badge" id="cartBadge">0</span>
@@ -32,6 +36,8 @@
                 <div class="tagline-list" aria-label="Cafe highlights">
                     <span>Made With Love at Friend's Zone Cafe</span>
                     <span>Delicious Food at Your Doorstep</span>
+                    <span>Free Home Delivery Above &#8377;200</span>
+                    <span>Call: 7983868082</span>
                 </div>
                 <a class="hero-cta" href="#menu">
                     <span>Order Now</span>
@@ -44,6 +50,7 @@
             <div class="section-heading">
                 <p class="eyebrow">Hot picks, fair prices</p>
                 <h2 id="menuTitle">Explore Our Menu</h2>
+                <p class="section-note">Rates updated from Friend's Zone Cafe menu. Minimum delivery order &#8377;200.</p>
             </div>
 
             <div class="category-shell" aria-label="Menu categories">
@@ -51,6 +58,43 @@
             </div>
 
             <div class="product-grid" id="productGrid" aria-live="polite"></div>
+        </section>
+
+        <section class="reviews-section" id="reviews" aria-labelledby="reviewsTitle">
+            <div class="section-heading">
+                <p class="eyebrow">Customer voices</p>
+                <h2 id="reviewsTitle">Reviews</h2>
+            </div>
+
+            <div class="reviews-layout">
+                <form class="review-form glass-panel" id="reviewForm">
+                    <label>
+                        Your Name
+                        <input type="text" name="reviewName" autocomplete="name" required>
+                    </label>
+                    <label>
+                        Rating
+                        <select name="reviewRating" required>
+                            <option value="5">5 Stars</option>
+                            <option value="4">4 Stars</option>
+                            <option value="3">3 Stars</option>
+                            <option value="2">2 Stars</option>
+                            <option value="1">1 Star</option>
+                        </select>
+                    </label>
+                    <label>
+                        Your Review
+                        <textarea name="reviewText" rows="4" required placeholder="Share your experience"></textarea>
+                    </label>
+                    <p class="form-message success-message" id="reviewMessage" role="status"></p>
+                    <button class="submit-review" type="submit">
+                        <i class="fa-solid fa-star" aria-hidden="true"></i>
+                        Submit Review
+                    </button>
+                </form>
+
+                <div class="review-list" id="reviewList" aria-live="polite"></div>
+            </div>
         </section>
     </main>
 
