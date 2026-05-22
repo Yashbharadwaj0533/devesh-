@@ -126,7 +126,7 @@ let activeCategory = categories[0];
 let reviews = [];
 
 const defaultReviews = [
-    { name: "Aman", rating: 5, text: "Pizza was hot, cheesy, and delivered quickly. Perfect for evening cravings." },
+    { name: "Yash Bharadwaj", rating: 5, text: "Pizza was hot, cheesy, and delivered quickly. Perfect for evening cravings." },
     { name: "Neha", rating: 5, text: "The combo offer is really value for money. Loved the garlic bread too." },
     { name: "Rohit", rating: 4, text: "Good taste and fresh food. The burger prices are very reasonable." }
 ];
