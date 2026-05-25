@@ -1,10 +1,10 @@
 const pizzaImage = "https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=900&q=80";
-const burgerImage = "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=900&q=80";
-const friesImage = "https://images.unsplash.com/photo-1573080496219-bb080dd4f877?auto=format&fit=crop&w=900&q=80";
+const burgerImage = "";
+const sideOrderImage = "";
 const momosImage = "https://images.unsplash.com/photo-1625398407796-82650a8c135f?auto=format&fit=crop&w=900&q=80";
 const sandwichImage = "https://images.unsplash.com/photo-1528735602780-2552fd46c7af?auto=format&fit=crop&w=900&q=80";
 const pastaImage = "https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?auto=format&fit=crop&w=900&q=80";
-const garlicBreadImage = "https://images.unsplash.com/photo-1573140247632-f8fd74997d5c?auto=format&fit=crop&w=900&q=80";
+const garlicBreadImage = "";
 const comboImage = "https://images.unsplash.com/photo-1610614819513-58e34989848b?auto=format&fit=crop&w=900&q=80";
 const drinkImage = "https://images.unsplash.com/photo-1461023058943-07fcbe16d735?auto=format&fit=crop&w=900&q=80";
 
@@ -85,12 +85,12 @@ const menuData = [
     { id: "achari-paneer-burger", category: "Burgers", name: "Achari Paneer Burger", price: 82, image: burgerImage },
     { id: "friends-zone-spl-burger", category: "Burgers", name: "Friends Zone Spl. Burger", price: 92, image: burgerImage },
 
-    { id: "zingy-parcel", category: "Side Orders", name: "Zingy Parcel", price: 43, image: friesImage },
-    { id: "french-fries", category: "Side Orders", name: "French Fries", price: 70, image: friesImage },
-    { id: "peri-peri-french-fries", category: "Side Orders", name: "Peri-peri French Fries", price: 95, image: friesImage },
-    { id: "chocolava-cake", category: "Side Orders", name: "Chocolava Cake", price: 85, image: friesImage },
-    { id: "cheese-dip", category: "Side Orders", name: "Cheese Dip", price: 30, image: friesImage },
-    { id: "jalapeno-dip", category: "Side Orders", name: "Jalapeno Dip", price: 20, image: friesImage },
+    { id: "zingy-parcel", category: "Side Orders", name: "Zingy Parcel", price: 43, image: sideOrderImage },
+    { id: "french-fries", category: "Side Orders", name: "French Fries", price: 70, image: sideOrderImage },
+    { id: "peri-peri-french-fries", category: "Side Orders", name: "Peri-peri French Fries", price: 95, image: sideOrderImage },
+    { id: "chocolava-cake", category: "Side Orders", name: "Chocolava Cake", price: 85, image: sideOrderImage },
+    { id: "cheese-dip", category: "Side Orders", name: "Cheese Dip", price: 30, image: sideOrderImage },
+    { id: "jalapeno-dip", category: "Side Orders", name: "Jalapeno Dip", price: 20, image: sideOrderImage },
 
     { id: "momos", category: "Momos", name: "Momos", price: 69, image: momosImage },
     { id: "fry-momos", category: "Momos", name: "Fry Momos", price: 79, image: momosImage },
@@ -126,7 +126,7 @@ let activeCategory = categories[0];
 let reviews = [];
 
 const defaultReviews = [
-    { name: "Yash Bharadwaj", rating: 5, text: "Pizza was hot, cheesy, and delivered quickly. Perfect for evening cravings." },
+    { name: "Aman", rating: 5, text: "Pizza was hot, cheesy, and delivered quickly. Perfect for evening cravings." },
     { name: "Neha", rating: 5, text: "The combo offer is really value for money. Loved the garlic bread too." },
     { name: "Rohit", rating: 4, text: "Good taste and fresh food. The burger prices are very reasonable." }
 ];
@@ -162,6 +162,19 @@ function escapeHtml(value) {
         .replaceAll("'", "&#039;");
 }
 
+function renderProductMedia(item) {
+    if (item.image) {
+        return `<img src="${item.image}" alt="${escapeHtml(item.name)}" loading="lazy">`;
+    }
+
+    return `
+        <div class="food-placeholder" role="img" aria-label="${escapeHtml(item.name)} image not available">
+            <span>${escapeHtml(item.category)}</span>
+            <strong>${escapeHtml(item.name)}</strong>
+        </div>
+    `;
+}
+
 function getCartItem(id) {
     return cart.find((item) => item.id === id);
 }
@@ -185,7 +198,7 @@ function renderProducts() {
         const quantity = cartItem ? cartItem.quantity : 0;
         return `
             <article class="food-card" style="animation-delay:${index * 0.025}s">
-                <img src="${item.image}" alt="${escapeHtml(item.name)}" loading="lazy">
+                ${renderProductMedia(item)}
                 <div class="card-body">
                     <div class="card-top">
                         <h3>${escapeHtml(item.name)}</h3>
