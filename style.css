@@ -329,11 +329,39 @@ h1 {
     box-shadow: 0 24px 65px rgba(35, 20, 11, 0.22);
 }
 
-.food-card img {
+.food-card img,
+.food-placeholder {
     width: 100%;
     aspect-ratio: 4 / 3;
-    object-fit: cover;
     display: block;
+}
+
+.food-card img {
+    object-fit: cover;
+}
+
+.food-placeholder {
+    padding: 18px;
+    background:
+        linear-gradient(135deg, rgba(255, 107, 6, 0.16), rgba(31, 157, 85, 0.12)),
+        #fffaf3;
+    display: grid;
+    align-content: center;
+    gap: 8px;
+}
+
+.food-placeholder span {
+    color: var(--amber-dark);
+    font-size: 0.78rem;
+    font-weight: 900;
+    text-transform: uppercase;
+}
+
+.food-placeholder strong {
+    color: var(--charcoal);
+    font-family: "Poppins", sans-serif;
+    font-size: 1.35rem;
+    line-height: 1.1;
 }
 
 .card-body {
