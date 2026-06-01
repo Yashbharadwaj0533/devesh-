@@ -1,538 +1,363 @@
-const pizzaImage = "https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=900&q=80";
-const burgerImage = "";
-const sideOrderImage = "";
-const momosImage = "https://images.unsplash.com/photo-1625398407796-82650a8c135f?auto=format&fit=crop&w=900&q=80";
-const sandwichImage = "https://images.unsplash.com/photo-1528735602780-2552fd46c7af?auto=format&fit=crop&w=900&q=80";
-const pastaImage = "https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?auto=format&fit=crop&w=900&q=80";
-const garlicBreadImage = "";
-const comboImage = "https://images.unsplash.com/photo-1610614819513-58e34989848b?auto=format&fit=crop&w=900&q=80";
-const drinkImage = "https://images.unsplash.com/photo-1461023058943-07fcbe16d735?auto=format&fit=crop&w=900&q=80";
+const whatsappNumber = "917983868082";
+const fallbackImage = "assets/hero-food.png";
 
-const menuData = [
-    { id: "tomato-pizza", category: "Single Topping Pizza", name: "Tomato Pizza", price: 69, image: pizzaImage },
-    { id: "onion-pizza", category: "Single Topping Pizza", name: "Onion Pizza", price: 71, image: pizzaImage },
-    { id: "capsicum-pizza", category: "Single Topping Pizza", name: "Capsicum Pizza", price: 76, image: pizzaImage },
-    { id: "corn-pizza", category: "Single Topping Pizza", name: "Corn Pizza", price: 76, image: pizzaImage },
-    { id: "single-topping-set-4", category: "Single Topping Pizza", name: "Set of 4 Single Topping Pizza", price: 270, image: pizzaImage },
-    { id: "onion-capsicum-pizza", category: "Double Topping Pizza", name: "Onion & Capsicum Pizza", price: 105, image: pizzaImage },
-    { id: "tomato-corn-pizza", category: "Double Topping Pizza", name: "Tomato & Corn Pizza", price: 105, image: pizzaImage },
-    { id: "jalapeno-onion-pizza", category: "Double Topping Pizza", name: "Jalapeno & Onion Pizza", price: 105, image: pizzaImage },
-    { id: "onion-paneer-pizza", category: "Double Topping Pizza", name: "Onion & Paneer Pizza", price: 109, image: pizzaImage },
-    { id: "double-topping-set-4", category: "Double Topping Pizza", name: "Set of 4 Double Topping Pizza", price: 399, image: pizzaImage },
+const foodImages = {
+  pizza: [
+    "https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=900&q=80",
+    "https://images.unsplash.com/photo-1594007654729-407eedc4be65?auto=format&fit=crop&w=900&q=80",
+    "https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&w=900&q=80"
+  ],
+  burger: [
+    "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=900&q=80",
+    "https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=900&q=80",
+    "https://images.unsplash.com/photo-1594212699903-ec8a3eca50f5?auto=format&fit=crop&w=900&q=80"
+  ],
+  fries: [
+    "https://images.unsplash.com/photo-1573080496219-bb080dd4f877?auto=format&fit=crop&w=900&q=80",
+    "https://images.unsplash.com/photo-1630384060421-cb20d0e0649d?auto=format&fit=crop&w=900&q=80"
+  ],
+  parcel: [
+    "https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=900&q=80",
+    "https://images.unsplash.com/photo-1606755962773-d324e2dabdca?auto=format&fit=crop&w=900&q=80"
+  ],
+  cake: [
+    "https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&w=900&q=80",
+    "https://images.unsplash.com/photo-1621303837174-89787a7d4729?auto=format&fit=crop&w=900&q=80"
+  ],
+  dip: [
+    "https://images.unsplash.com/photo-1626200419199-391ae4be7a41?auto=format&fit=crop&w=900&q=80",
+    "https://images.unsplash.com/photo-1551887196-72e32bfc7bf3?auto=format&fit=crop&w=900&q=80"
+  ],
+  momos: [
+    "https://images.unsplash.com/photo-1625220194771-7ebdea0b70b9?auto=format&fit=crop&w=900&q=80",
+    "https://images.unsplash.com/photo-1496116218417-1a781b1c416c?auto=format&fit=crop&w=900&q=80",
+    "https://images.unsplash.com/photo-1541696432-82c6da8ce7bf?auto=format&fit=crop&w=900&q=80"
+  ],
+  sandwich: [
+    "https://images.unsplash.com/photo-1553909489-cd47e0907980?auto=format&fit=crop&w=900&q=80",
+    "https://images.unsplash.com/photo-1528735602780-2552fd46c7af?auto=format&fit=crop&w=900&q=80",
+    "https://images.unsplash.com/photo-1481070555726-e2fe8357725c?auto=format&fit=crop&w=900&q=80"
+  ],
+  pasta: [
+    "https://images.unsplash.com/photo-1551183053-bf91a1d81141?auto=format&fit=crop&w=900&q=80",
+    "https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?auto=format&fit=crop&w=900&q=80",
+    "https://images.unsplash.com/photo-1473093295043-cdd812d0e601?auto=format&fit=crop&w=900&q=80"
+  ],
+  drink: [
+    "https://images.unsplash.com/photo-1572490122747-3968b75cc699?auto=format&fit=crop&w=900&q=80",
+    "https://images.unsplash.com/photo-1461023058943-07fcbe16d735?auto=format&fit=crop&w=900&q=80",
+    "https://images.unsplash.com/photo-1544145945-f90425340c7e?auto=format&fit=crop&w=900&q=80"
+  ],
+  combo: [
+    "https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?auto=format&fit=crop&w=900&q=80",
+    "https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=900&q=80",
+    "https://images.unsplash.com/photo-1600891964599-f61ba0e24092?auto=format&fit=crop&w=900&q=80"
+  ]
+};
 
-    { id: "cheese-pizza-small", category: "Veg Pizza", name: "Cheese Pizza - Small", price: 105, image: pizzaImage },
-    { id: "cheese-pizza-medium", category: "Veg Pizza", name: "Cheese Pizza - Medium", price: 219, image: pizzaImage },
-    { id: "cheese-pizza-large", category: "Veg Pizza", name: "Cheese Pizza - Large", price: 352, image: pizzaImage },
-    { id: "cheese-corn-small", category: "Veg Pizza", name: "Cheese & Corn - Small", price: 105, image: pizzaImage },
-    { id: "cheese-corn-medium", category: "Veg Pizza", name: "Cheese & Corn - Medium", price: 219, image: pizzaImage },
-    { id: "cheese-corn-large", category: "Veg Pizza", name: "Cheese & Corn - Large", price: 352, image: pizzaImage },
-    { id: "cheese-onion-small", category: "Veg Pizza", name: "Cheese & Onion - Small", price: 105, image: pizzaImage },
-    { id: "cheese-onion-medium", category: "Veg Pizza", name: "Cheese & Onion - Medium", price: 219, image: pizzaImage },
-    { id: "cheese-onion-large", category: "Veg Pizza", name: "Cheese & Onion - Large", price: 352, image: pizzaImage },
-    { id: "double-cheese-small", category: "Veg Pizza", name: "Double Cheese Pizza - Small", price: 142, image: pizzaImage },
-    { id: "double-cheese-medium", category: "Veg Pizza", name: "Double Cheese Pizza - Medium", price: 285, image: pizzaImage },
-    { id: "double-cheese-large", category: "Veg Pizza", name: "Double Cheese Pizza - Large", price: 428, image: pizzaImage },
-    { id: "garden-fresh-small", category: "Veg Pizza", name: "Garden Fresh - Small", price: 142, image: pizzaImage },
-    { id: "garden-fresh-medium", category: "Veg Pizza", name: "Garden Fresh - Medium", price: 285, image: pizzaImage },
-    { id: "garden-fresh-large", category: "Veg Pizza", name: "Garden Fresh - Large", price: 428, image: pizzaImage },
-    { id: "cheese-paneer-small", category: "Veg Pizza", name: "Cheese & Paneer - Small", price: 142, image: pizzaImage },
-    { id: "cheese-paneer-medium", category: "Veg Pizza", name: "Cheese & Paneer - Medium", price: 285, image: pizzaImage },
-    { id: "cheese-paneer-large", category: "Veg Pizza", name: "Cheese & Paneer - Large", price: 428, image: pizzaImage },
-    { id: "farmfresh-small", category: "Veg Pizza", name: "Farmfresh - Small", price: 190, image: pizzaImage },
-    { id: "farmfresh-medium", category: "Veg Pizza", name: "Farmfresh - Medium", price: 343, image: pizzaImage },
-    { id: "farmfresh-large", category: "Veg Pizza", name: "Farmfresh - Large", price: 495, image: pizzaImage },
-    { id: "country-feast-small", category: "Veg Pizza", name: "Country Feast - Small", price: 190, image: pizzaImage },
-    { id: "country-feast-medium", category: "Veg Pizza", name: "Country Feast - Medium", price: 343, image: pizzaImage },
-    { id: "country-feast-large", category: "Veg Pizza", name: "Country Feast - Large", price: 495, image: pizzaImage },
-    { id: "spicy-tango-small", category: "Veg Pizza", name: "Spicy Tango Pizza - Small", price: 190, image: pizzaImage },
-    { id: "spicy-tango-medium", category: "Veg Pizza", name: "Spicy Tango Pizza - Medium", price: 343, image: pizzaImage },
-    { id: "spicy-tango-large", category: "Veg Pizza", name: "Spicy Tango Pizza - Large", price: 495, image: pizzaImage },
-    { id: "wonder-pizza-small", category: "Veg Pizza", name: "Wonder Pizza - Small", price: 190, image: pizzaImage },
-    { id: "wonder-pizza-medium", category: "Veg Pizza", name: "Wonder Pizza - Medium", price: 343, image: pizzaImage },
-    { id: "wonder-pizza-large", category: "Veg Pizza", name: "Wonder Pizza - Large", price: 495, image: pizzaImage },
-    { id: "spicy-paneer-small", category: "Veg Pizza", name: "Spicy Paneer - Small", price: 219, image: pizzaImage },
-    { id: "spicy-paneer-medium", category: "Veg Pizza", name: "Spicy Paneer - Medium", price: 380, image: pizzaImage },
-    { id: "spicy-paneer-large", category: "Veg Pizza", name: "Spicy Paneer - Large", price: 505, image: pizzaImage },
-    { id: "three-peppers-small", category: "Veg Pizza", name: "Three Peppers - Small", price: 219, image: pizzaImage },
-    { id: "three-peppers-medium", category: "Veg Pizza", name: "Three Peppers - Medium", price: 380, image: pizzaImage },
-    { id: "three-peppers-large", category: "Veg Pizza", name: "Three Peppers - Large", price: 505, image: pizzaImage },
-    { id: "delicious-pizza-small", category: "Veg Pizza", name: "Delicious Pizza - Small", price: 219, image: pizzaImage },
-    { id: "delicious-pizza-medium", category: "Veg Pizza", name: "Delicious Pizza - Medium", price: 380, image: pizzaImage },
-    { id: "delicious-pizza-large", category: "Veg Pizza", name: "Delicious Pizza - Large", price: 505, image: pizzaImage },
-    { id: "veggie-lovers-small", category: "Veg Pizza", name: "Veggie Lovers - Small", price: 219, image: pizzaImage },
-    { id: "veggie-lovers-medium", category: "Veg Pizza", name: "Veggie Lovers - Medium", price: 380, image: pizzaImage },
-    { id: "veggie-lovers-large", category: "Veg Pizza", name: "Veggie Lovers - Large", price: 505, image: pizzaImage },
-    { id: "achari-pizza-small", category: "Veg Pizza", name: "Achari Pizza - Small", price: 219, image: pizzaImage },
-    { id: "achari-pizza-medium", category: "Veg Pizza", name: "Achari Pizza - Medium", price: 380, image: pizzaImage },
-    { id: "achari-pizza-large", category: "Veg Pizza", name: "Achari Pizza - Large", price: 505, image: pizzaImage },
-    { id: "friends-zone-special-small", category: "Veg Pizza", name: "Friends Zone Special Pizza - Small", price: 248, image: pizzaImage },
-    { id: "friends-zone-special-medium", category: "Veg Pizza", name: "Friends Zone Special Pizza - Medium", price: 400, image: pizzaImage },
-    { id: "friends-zone-special-large", category: "Veg Pizza", name: "Friends Zone Special Pizza - Large", price: 562, image: pizzaImage },
-    { id: "cloud-one-small", category: "Veg Pizza", name: "Cloud One Pizza - Small", price: 248, image: pizzaImage },
-    { id: "cloud-one-medium", category: "Veg Pizza", name: "Cloud One Pizza - Medium", price: 400, image: pizzaImage },
-    { id: "cloud-one-large", category: "Veg Pizza", name: "Cloud One Pizza - Large", price: 562, image: pizzaImage },
-    { id: "chefs-veg-special-small", category: "Veg Pizza", name: "Chef's Veg Special - Small", price: 248, image: pizzaImage },
-    { id: "chefs-veg-special-medium", category: "Veg Pizza", name: "Chef's Veg Special - Medium", price: 400, image: pizzaImage },
-    { id: "chefs-veg-special-large", category: "Veg Pizza", name: "Chef's Veg Special - Large", price: 562, image: pizzaImage },
-    { id: "paneer-makhani-small", category: "Veg Pizza", name: "Paneer Makhani Pizza - Small", price: 248, image: pizzaImage },
-    { id: "paneer-makhani-medium", category: "Veg Pizza", name: "Paneer Makhani Pizza - Medium", price: 400, image: pizzaImage },
-    { id: "paneer-makhani-large", category: "Veg Pizza", name: "Paneer Makhani Pizza - Large", price: 562, image: pizzaImage },
-
-    { id: "potato-crispy-burger", category: "Burgers", name: "Potato Crispy Burger", price: 43, image: burgerImage },
-    { id: "cheese-burger", category: "Burgers", name: "Cheese Burger", price: 52, image: burgerImage },
-    { id: "veg-delight-burger", category: "Burgers", name: "Veg Delight Burger", price: 62, image: burgerImage },
-    { id: "smoky-tandoori-burger", category: "Burgers", name: "Smoky Tandoori Burger", price: 72, image: burgerImage },
-    { id: "achari-paneer-burger", category: "Burgers", name: "Achari Paneer Burger", price: 82, image: burgerImage },
-    { id: "friends-zone-spl-burger", category: "Burgers", name: "Friends Zone Spl. Burger", price: 92, image: burgerImage },
-
-    { id: "zingy-parcel", category: "Side Orders", name: "Zingy Parcel", price: 43, image: sideOrderImage },
-    { id: "french-fries", category: "Side Orders", name: "French Fries", price: 70, image: sideOrderImage },
-    { id: "peri-peri-french-fries", category: "Side Orders", name: "Peri-peri French Fries", price: 95, image: sideOrderImage },
-    { id: "chocolava-cake", category: "Side Orders", name: "Chocolava Cake", price: 85, image: sideOrderImage },
-    { id: "cheese-dip", category: "Side Orders", name: "Cheese Dip", price: 30, image: sideOrderImage },
-    { id: "jalapeno-dip", category: "Side Orders", name: "Jalapeno Dip", price: 20, image: sideOrderImage },
-
-    { id: "momos", category: "Momos", name: "Momos", price: 69, image: momosImage },
-    { id: "fry-momos", category: "Momos", name: "Fry Momos", price: 79, image: momosImage },
-    { id: "paneer-momos", category: "Momos", name: "Paneer Momos", price: 89, image: momosImage },
-    { id: "fry-paneer-momos", category: "Momos", name: "Fry Paneer Momos", price: 99, image: momosImage },
-
-    { id: "mexican-sandwich", category: "Sandwich", name: "Mexican Sandwich", price: 79, image: sandwichImage },
-    { id: "smoggy-veggie-sandwich", category: "Sandwich", name: "Smoggy Veggie Sandwich", price: 89, image: sandwichImage },
-    { id: "veggie-paradise-sandwich", category: "Sandwich", name: "Veggie Paradise Sandwich", price: 89, image: sandwichImage },
-    { id: "loaded-veggies-sandwich", category: "Sandwich", name: "Loaded Veggies Sandwich", price: 89, image: sandwichImage },
-    { id: "paneer-tikka-sandwich", category: "Sandwich", name: "Paneer Tikka Sandwich", price: 99, image: sandwichImage },
-
-    { id: "veg-red-pasta", category: "Pasta", name: "Veg Red Pasta", price: 105, image: pastaImage },
-    { id: "veg-white-pasta", category: "Pasta", name: "Veg White Pasta", price: 105, image: pastaImage },
-    { id: "mix-sauce-pasta", category: "Pasta", name: "Mix Sauce Pasta", price: 119, image: pastaImage },
-
-    { id: "garlic-bread", category: "Garlic Bread", name: "Garlic Bread", price: 95, image: garlicBreadImage },
-    { id: "stuffed-garlic-bread", category: "Garlic Bread", name: "Stuffed Garlic Bread", price: 120, image: garlicBreadImage },
-    { id: "veg-calzone-pocket", category: "Garlic Bread", name: "Veg Calzone Pocket", price: 119, image: garlicBreadImage },
-
-    { id: "cold-coffee", category: "Drinks", name: "Cold Coffee", price: 99, image: drinkImage },
-
-    { id: "combo-1", category: "Combo Offers", name: "Combo-1", price: 170, image: comboImage },
-    { id: "combo-2", category: "Combo Offers", name: "Combo-2", price: 315, image: comboImage },
-    { id: "family-combo", category: "Combo Offers", name: "Family Combo", price: 560, image: comboImage },
-    { id: "happy-family-combo", category: "Combo Offers", name: "Happy Family Combo", price: 710, image: comboImage }
+const rawItems = [
+  ["tomato-pizza", "Single Topping Pizza", "Tomato Pizza", 69],
+  ["onion-pizza", "Single Topping Pizza", "Onion Pizza", 71],
+  ["capsicum-pizza", "Single Topping Pizza", "Capsicum Pizza", 76],
+  ["corn-pizza", "Single Topping Pizza", "Corn Pizza", 76],
+  ["single-topping-set-4", "Single Topping Pizza", "Set of 4 Single Topping Pizza", 270],
+  ["onion-capsicum-pizza", "Double Topping Pizza", "Onion & Capsicum Pizza", 105],
+  ["tomato-corn-pizza", "Double Topping Pizza", "Tomato & Corn Pizza", 105],
+  ["jalapeno-onion-pizza", "Double Topping Pizza", "Jalapeno & Onion Pizza", 105],
+  ["onion-paneer-pizza", "Double Topping Pizza", "Onion & Paneer Pizza", 109],
+  ["double-topping-set-4", "Double Topping Pizza", "Set of 4 Double Topping Pizza", 399],
+  ["cheese-pizza-small", "Veg Pizza", "Cheese Pizza - Small", 105],
+  ["cheese-pizza-medium", "Veg Pizza", "Cheese Pizza - Medium", 219],
+  ["cheese-pizza-large", "Veg Pizza", "Cheese Pizza - Large", 352],
+  ["cheese-corn-small", "Veg Pizza", "Cheese & Corn - Small", 105],
+  ["cheese-corn-medium", "Veg Pizza", "Cheese & Corn - Medium", 219],
+  ["cheese-corn-large", "Veg Pizza", "Cheese & Corn - Large", 352],
+  ["cheese-onion-small", "Veg Pizza", "Cheese & Onion - Small", 105],
+  ["cheese-onion-medium", "Veg Pizza", "Cheese & Onion - Medium", 219],
+  ["cheese-onion-large", "Veg Pizza", "Cheese & Onion - Large", 352],
+  ["double-cheese-small", "Veg Pizza", "Double Cheese Pizza - Small", 142],
+  ["double-cheese-medium", "Veg Pizza", "Double Cheese Pizza - Medium", 285],
+  ["double-cheese-large", "Veg Pizza", "Double Cheese Pizza - Large", 428],
+  ["garden-fresh-small", "Veg Pizza", "Garden Fresh - Small", 142],
+  ["garden-fresh-medium", "Veg Pizza", "Garden Fresh - Medium", 285],
+  ["garden-fresh-large", "Veg Pizza", "Garden Fresh - Large", 428],
+  ["cheese-paneer-small", "Veg Pizza", "Cheese & Paneer - Small", 142],
+  ["cheese-paneer-medium", "Veg Pizza", "Cheese & Paneer - Medium", 285],
+  ["cheese-paneer-large", "Veg Pizza", "Cheese & Paneer - Large", 428],
+  ["farmfresh-small", "Veg Pizza", "Farmfresh - Small", 190],
+  ["farmfresh-medium", "Veg Pizza", "Farmfresh - Medium", 343],
+  ["farmfresh-large", "Veg Pizza", "Farmfresh - Large", 495],
+  ["country-feast-small", "Veg Pizza", "Country Feast - Small", 190],
+  ["country-feast-medium", "Veg Pizza", "Country Feast - Medium", 343],
+  ["country-feast-large", "Veg Pizza", "Country Feast - Large", 495],
+  ["spicy-tango-small", "Veg Pizza", "Spicy Tango Pizza - Small", 190],
+  ["spicy-tango-medium", "Veg Pizza", "Spicy Tango Pizza - Medium", 343],
+  ["spicy-tango-large", "Veg Pizza", "Spicy Tango Pizza - Large", 495],
+  ["wonder-pizza-small", "Veg Pizza", "Wonder Pizza - Small", 190],
+  ["wonder-pizza-medium", "Veg Pizza", "Wonder Pizza - Medium", 343],
+  ["wonder-pizza-large", "Veg Pizza", "Wonder Pizza - Large", 495],
+  ["spicy-paneer-small", "Veg Pizza", "Spicy Paneer - Small", 219],
+  ["spicy-paneer-medium", "Veg Pizza", "Spicy Paneer - Medium", 380],
+  ["spicy-paneer-large", "Veg Pizza", "Spicy Paneer - Large", 505],
+  ["three-peppers-small", "Veg Pizza", "Three Peppers - Small", 219],
+  ["three-peppers-medium", "Veg Pizza", "Three Peppers - Medium", 380],
+  ["three-peppers-large", "Veg Pizza", "Three Peppers - Large", 505],
+  ["delicious-pizza-small", "Veg Pizza", "Delicious Pizza - Small", 219],
+  ["delicious-pizza-medium", "Veg Pizza", "Delicious Pizza - Medium", 380],
+  ["delicious-pizza-large", "Veg Pizza", "Delicious Pizza - Large", 505],
+  ["veggie-lovers-small", "Veg Pizza", "Veggie Lovers - Small", 219],
+  ["veggie-lovers-medium", "Veg Pizza", "Veggie Lovers - Medium", 380],
+  ["veggie-lovers-large", "Veg Pizza", "Veggie Lovers - Large", 505],
+  ["achari-pizza-small", "Veg Pizza", "Achari Pizza - Small", 219],
+  ["achari-pizza-medium", "Veg Pizza", "Achari Pizza - Medium", 380],
+  ["achari-pizza-large", "Veg Pizza", "Achari Pizza - Large", 505],
+  ["friends-zone-special-small", "Veg Pizza", "Friends Zone Special Pizza - Small", 248],
+  ["friends-zone-special-medium", "Veg Pizza", "Friends Zone Special Pizza - Medium", 400],
+  ["friends-zone-special-large", "Veg Pizza", "Friends Zone Special Pizza - Large", 562],
+  ["cloud-one-small", "Veg Pizza", "Cloud One Pizza - Small", 248],
+  ["cloud-one-medium", "Veg Pizza", "Cloud One Pizza - Medium", 400],
+  ["cloud-one-large", "Veg Pizza", "Cloud One Pizza - Large", 562],
+  ["chefs-veg-special-small", "Veg Pizza", "Chef's Veg Special - Small", 248],
+  ["chefs-veg-special-medium", "Veg Pizza", "Chef's Veg Special - Medium", 400],
+  ["chefs-veg-special-large", "Veg Pizza", "Chef's Veg Special - Large", 562],
+  ["paneer-makhani-small", "Veg Pizza", "Paneer Makhani Pizza - Small", 248],
+  ["paneer-makhani-medium", "Veg Pizza", "Paneer Makhani Pizza - Medium", 400],
+  ["paneer-makhani-large", "Veg Pizza", "Paneer Makhani Pizza - Large", 562],
+  ["potato-crispy-burger", "Burgers", "Potato Crispy Burger", 43],
+  ["cheese-burger", "Burgers", "Cheese Burger", 52],
+  ["veg-delight-burger", "Burgers", "Veg Delight Burger", 62],
+  ["smoky-tandoori-burger", "Burgers", "Smoky Tandoori Burger", 72],
+  ["achari-paneer-burger", "Burgers", "Achari Paneer Burger", 82],
+  ["friends-zone-spl-burger", "Burgers", "Friends Zone Spl. Burger", 92],
+  ["zingy-parcel", "Side Orders", "Zingy Parcel", 43],
+  ["french-fries", "Side Orders", "French Fries", 70],
+  ["peri-peri-french-fries", "Side Orders", "Peri-peri French Fries", 95],
+  ["chocolava-cake", "Side Orders", "Chocolava Cake", 85],
+  ["cheese-dip", "Side Orders", "Cheese Dip", 30],
+  ["jalapeno-dip", "Side Orders", "Jalapeno Dip", 20],
+  ["momos", "Momos", "Momos", 69],
+  ["fry-momos", "Momos", "Fry Momos", 79],
+  ["paneer-momos", "Momos", "Paneer Momos", 89],
+  ["fry-paneer-momos", "Momos", "Fry Paneer Momos", 99],
+  ["mexican-sandwich", "Sandwich", "Mexican Sandwich", 79],
+  ["smoggy-veggie-sandwich", "Sandwich", "Smoggy Veggie Sandwich", 89],
+  ["veggie-paradise-sandwich", "Sandwich", "Veggie Paradise Sandwich", 89],
+  ["loaded-veggies-sandwich", "Sandwich", "Loaded Veggies Sandwich", 89],
+  ["paneer-tikka-sandwich", "Sandwich", "Paneer Tikka Sandwich", 99],
+  ["veg-red-pasta", "Pasta", "Veg Red Pasta", 105],
+  ["veg-white-pasta", "Pasta", "Veg White Pasta", 105],
+  ["mix-sauce-pasta", "Pasta", "Mix Sauce Pasta", 119],
+  ["cold-coffee", "Drinks", "Cold Coffee", 99],
+  ["combo-1", "Combo Offers", "Combo-1", 170],
+  ["combo-2", "Combo Offers", "Combo-2", 315],
+  ["family-combo", "Combo Offers", "Family Combo", 560],
+  ["happy-family-combo", "Combo Offers", "Happy Family Combo", 710]
 ];
 
-const categories = ["Single Topping Pizza", "Double Topping Pizza", "Veg Pizza", "Burgers", "Side Orders", "Momos", "Sandwich", "Pasta", "Garlic Bread", "Drinks", "Combo Offers"];
-const cafeWhatsAppNumber = "917983868082";
-let cart = [];
-let activeCategory = categories[0];
-let reviews = [];
-
-const defaultReviews = [
-    { name: "Aman", rating: 5, text: "Pizza was hot, cheesy, and delivered quickly. Perfect for evening cravings." },
-    { name: "Neha", rating: 5, text: "The combo offer is really value for money. Loved the garlic bread too." },
-    { name: "Rohit", rating: 4, text: "Good taste and fresh food. The burger prices are very reasonable." }
-];
-
-const productGrid = document.getElementById("productGrid");
+const menuItems = rawItems.map(([id, category, name, price]) => ({ id, category, name, price }));
+const categories = [...new Set(menuItems.map((item) => item.category))];
 const categoryBar = document.getElementById("categoryBar");
-const cartItems = document.getElementById("cartItems");
+const menuGrid = document.getElementById("menuGrid");
+const searchInput = document.getElementById("searchInput");
+const cartList = document.getElementById("cartList");
 const cartTotal = document.getElementById("cartTotal");
-const cartBadge = document.getElementById("cartBadge");
-const cartDrawer = document.getElementById("cartDrawer");
-const cartTrigger = document.getElementById("cartTrigger");
-const closeCart = document.getElementById("closeCart");
-const checkoutForm = document.getElementById("checkoutForm");
-const formMessage = document.getElementById("formMessage");
-const modalBackdrop = document.getElementById("modalBackdrop");
-const confirmationContent = document.getElementById("confirmationContent");
-const modalClose = document.getElementById("modalClose");
-const continueShopping = document.getElementById("continueShopping");
-const reviewForm = document.getElementById("reviewForm");
-const reviewList = document.getElementById("reviewList");
-const reviewMessage = document.getElementById("reviewMessage");
+const orderForm = document.getElementById("orderForm");
+const orderMessage = document.getElementById("orderMessage");
+const menuToggle = document.getElementById("menuToggle");
+const navLinks = document.getElementById("navLinks");
+let activeCategory = categories[0];
+let cart = {};
 
-function formatPrice(value) {
-    return `\u20B9${value}`;
+function rupees(value) {
+  return `₹${value}`;
 }
 
 function escapeHtml(value) {
-    return String(value)
-        .replaceAll("&", "&amp;")
-        .replaceAll("<", "&lt;")
-        .replaceAll(">", "&gt;")
-        .replaceAll('"', "&quot;")
-        .replaceAll("'", "&#039;");
+  return String(value).replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll('"', "&quot;").replaceAll("'", "&#039;");
 }
 
-function renderProductMedia(item) {
-    if (item.image) {
-        return `<img src="${item.image}" alt="${escapeHtml(item.name)}" loading="lazy">`;
-    }
-
-    return `
-        <div class="food-placeholder" role="img" aria-label="${escapeHtml(item.name)} image not available">
-            <span>${escapeHtml(item.category)}</span>
-            <strong>${escapeHtml(item.name)}</strong>
-        </div>
-    `;
-}
-
-function getCartItem(id) {
-    return cart.find((item) => item.id === id);
-}
-
-function calculateTotal() {
-    return cart.reduce((total, item) => total + item.price * item.quantity, 0);
+function getFoodImage(item, index) {
+  const id = item.id.toLowerCase();
+  const category = item.category.toLowerCase();
+  const pick = (images) => images[index % images.length];
+  if (category.includes("pizza")) return foodImages.pizza[index % foodImages.pizza.length];
+  if (category.includes("burger")) return pick(foodImages.burger);
+  if (id.includes("fries")) return pick(foodImages.fries);
+  if (id.includes("parcel")) return pick(foodImages.parcel);
+  if (id.includes("cake")) return pick(foodImages.cake);
+  if (id.includes("dip")) return pick(foodImages.dip);
+  if (category.includes("momos")) return pick(foodImages.momos);
+  if (category.includes("sandwich")) return pick(foodImages.sandwich);
+  if (category.includes("pasta")) return pick(foodImages.pasta);
+  if (category.includes("drinks")) return pick(foodImages.drink);
+  if (category.includes("combo")) return pick(foodImages.combo);
+  return fallbackImage;
 }
 
 function renderCategories() {
-    categoryBar.innerHTML = categories.map((category, index) => `
-        <button class="category-button ${category === activeCategory ? "active" : ""}" style="animation-delay:${index * 0.04}s" type="button" data-category="${category}">
-            ${category}
-        </button>
-    `).join("");
+  categoryBar.innerHTML = categories.map((category) => `
+    <button class="category-button ${category === activeCategory ? "active" : ""}" type="button" data-category="${escapeHtml(category)}">${escapeHtml(category)}</button>
+  `).join("");
 }
 
-function renderProducts() {
-    const filteredItems = menuData.filter((item) => item.category === activeCategory);
-    productGrid.innerHTML = filteredItems.map((item, index) => {
-        const cartItem = getCartItem(item.id);
-        const quantity = cartItem ? cartItem.quantity : 0;
-        return `
-            <article class="food-card" style="animation-delay:${index * 0.025}s">
-                ${renderProductMedia(item)}
-                <div class="card-body">
-                    <div class="card-top">
-                        <h3>${escapeHtml(item.name)}</h3>
-                        <span class="price">${formatPrice(item.price)}</span>
-                    </div>
-                    <div class="card-actions">
-                        <div class="qty-control" aria-label="Quantity for ${escapeHtml(item.name)}">
-                            <button type="button" data-action="decrease" data-id="${item.id}" aria-label="Decrease ${escapeHtml(item.name)} quantity">-</button>
-                            <span>${quantity}</span>
-                            <button type="button" data-action="increase" data-id="${item.id}" aria-label="Increase ${escapeHtml(item.name)} quantity">+</button>
-                        </div>
-                        <button class="add-button" type="button" data-action="add" data-id="${item.id}">
-                            Add to Cart
-                        </button>
-                    </div>
-                </div>
-            </article>
-        `;
-    }).join("");
+function getFilteredItems() {
+  const query = searchInput.value.trim().toLowerCase();
+  return menuItems.filter((item) => {
+    const categoryMatch = item.category === activeCategory;
+    const queryMatch = !query || `${item.name} ${item.category}`.toLowerCase().includes(query);
+    return categoryMatch && queryMatch;
+  });
+}
+
+function renderMenu() {
+  const items = getFilteredItems();
+  menuGrid.innerHTML = items.map((item, index) => `
+    <article class="food-card">
+      <div class="food-media">
+        <img src="${getFoodImage(item, index)}" alt="${escapeHtml(item.name)}" loading="lazy" onerror="this.onerror=null;this.src='${fallbackImage}';">
+        <span>${escapeHtml(item.category)}</span>
+      </div>
+      <div class="food-body">
+        <div class="food-title">
+          <h3>${escapeHtml(item.name)}</h3>
+          <p>${escapeHtml(item.category)}</p>
+        </div>
+        <div class="food-actions">
+          <span class="price">${rupees(item.price)}</span>
+          <button class="add-button" type="button" data-add="${escapeHtml(item.id)}">Add</button>
+        </div>
+      </div>
+    </article>
+  `).join("") || `<p class="cart-empty">No items found.</p>`;
 }
 
 function addToCart(id) {
-    const menuItem = menuData.find((item) => item.id === id);
-    const existingItem = getCartItem(id);
-
-    if (existingItem) {
-        existingItem.quantity += 1;
-    } else if (menuItem) {
-        cart.push({
-            id: menuItem.id,
-            name: menuItem.name,
-            price: menuItem.price,
-            quantity: 1
-        });
-    }
-
-    renderCart();
-    renderProducts();
+  cart[id] = (cart[id] || 0) + 1;
+  renderCart();
 }
 
-function updateQuantity(id, direction) {
-    const existingItem = getCartItem(id);
-
-    if (!existingItem && direction === "increase") {
-        addToCart(id);
-        return;
-    }
-
-    if (!existingItem) {
-        return;
-    }
-
-    existingItem.quantity += direction === "increase" ? 1 : -1;
-
-    if (existingItem.quantity <= 0) {
-        removeFromCart(id);
-        return;
-    }
-
-    renderCart();
-    renderProducts();
+function changeQuantity(id, delta) {
+  const next = (cart[id] || 0) + delta;
+  if (next <= 0) delete cart[id];
+  else cart[id] = next;
+  renderCart();
 }
 
-function removeFromCart(id) {
-    cart = cart.filter((item) => item.id !== id);
-    renderCart();
-    renderProducts();
+function getCartRows() {
+  return Object.entries(cart).map(([id, quantity]) => {
+    const item = menuItems.find((entry) => entry.id === id);
+    return item ? { ...item, quantity, lineTotal: item.price * quantity } : null;
+  }).filter(Boolean);
 }
 
 function renderCart() {
-    const itemCount = cart.reduce((total, item) => total + item.quantity, 0);
-    cartBadge.textContent = itemCount;
-    cartTotal.textContent = formatPrice(calculateTotal());
-
-    if (cart.length === 0) {
-        cartItems.innerHTML = '<div class="empty-cart">Your cart is waiting for something delicious.</div>';
-        return;
-    }
-
-    cartItems.innerHTML = cart.map((item) => `
-        <article class="cart-item">
-            <div class="cart-item-main">
-                <div>
-                    <h3>${escapeHtml(item.name)}</h3>
-                    <p>${formatPrice(item.price)} x ${item.quantity} = ${formatPrice(item.price * item.quantity)}</p>
-                </div>
-                <button class="remove-button" type="button" data-remove="${item.id}" aria-label="Remove ${escapeHtml(item.name)}">
-                    <i class="fa-solid fa-trash" aria-hidden="true"></i>
-                </button>
-            </div>
-            <div class="qty-control" aria-label="Cart quantity for ${escapeHtml(item.name)}">
-                <button type="button" data-action="decrease" data-id="${item.id}" aria-label="Decrease ${escapeHtml(item.name)} quantity">-</button>
-                <span>${item.quantity}</span>
-                <button type="button" data-action="increase" data-id="${item.id}" aria-label="Increase ${escapeHtml(item.name)} quantity">+</button>
-            </div>
-        </article>
-    `).join("");
+  const rows = getCartRows();
+  const total = rows.reduce((sum, row) => sum + row.lineTotal, 0);
+  cartTotal.textContent = rupees(total);
+  cartList.innerHTML = rows.length ? rows.map((row) => `
+    <div class="cart-row">
+      <div><strong>${escapeHtml(row.name)}</strong><div>${rupees(row.price)} x ${row.quantity} = ${rupees(row.lineTotal)}</div></div>
+      <div class="qty-controls">
+        <button class="qty-button" type="button" data-qty="${escapeHtml(row.id)}" data-delta="-1">-</button>
+        <span>${row.quantity}</span>
+        <button class="qty-button" type="button" data-qty="${escapeHtml(row.id)}" data-delta="1">+</button>
+      </div>
+    </div>
+  `).join("") : `<p class="cart-empty">Your cart is empty.</p>`;
 }
 
-function openCart() {
-    cartDrawer.classList.add("open");
-    cartDrawer.setAttribute("aria-hidden", "false");
-    document.body.classList.add("drawer-open");
+function createOrderText(customer) {
+  const rows = getCartRows();
+  const total = rows.reduce((sum, row) => sum + row.lineTotal, 0);
+  return [
+    "New Order - Friend's Zone Cafe",
+    "",
+    `Name: ${customer.name}`,
+    `Mobile: ${customer.phone}`,
+    `Address: ${customer.address}`,
+    "",
+    "Items:",
+    ...rows.map((row) => `- ${row.name} x ${row.quantity} = ${rupees(row.lineTotal)}`),
+    "",
+    `Total: ${rupees(total)}`
+  ].join("\n");
 }
 
-function closeCartDrawer() {
-    cartDrawer.classList.remove("open");
-    cartDrawer.setAttribute("aria-hidden", "true");
-    document.body.classList.remove("drawer-open");
+function closeMenu() {
+  navLinks.classList.remove("is-open");
+  menuToggle.classList.remove("is-open");
+  menuToggle.setAttribute("aria-expanded", "false");
 }
 
-function generateOrderId() {
-    return `FZC-${Math.floor(100000 + Math.random() * 900000)}`;
-}
+menuToggle.addEventListener("click", () => {
+  const isOpen = navLinks.classList.toggle("is-open");
+  menuToggle.classList.toggle("is-open", isOpen);
+  menuToggle.setAttribute("aria-expanded", String(isOpen));
+});
 
-function createOrderMessage(orderDetails) {
-    const itemLines = cart.map((item) => (
-        `- ${item.name} x ${item.quantity} = ${formatPrice(item.price * item.quantity)}`
-    )).join("\n");
+navLinks.addEventListener("click", (event) => {
+  if (event.target.matches("a")) closeMenu();
+});
 
-    return [
-        "New Order - Friend's Zone Cafe",
-        `Order ID: ${orderDetails.orderId}`,
-        "",
-        "Items:",
-        itemLines,
-        "",
-        `Total: ${formatPrice(calculateTotal())}`,
-        "",
-        `Customer: ${orderDetails.name}`,
-        `Mobile: ${orderDetails.mobile}`,
-        `Address: ${orderDetails.address}`,
-        `Payment: ${orderDetails.payment}`,
-        orderDetails.instructions ? `Instructions: ${orderDetails.instructions}` : ""
-    ].filter(Boolean).join("\n");
-}
-
-function createWhatsAppUrl(message) {
-    return `https://wa.me/${cafeWhatsAppNumber}?text=${encodeURIComponent(message)}`;
-}
-
-function buildConfirmation(orderDetails, whatsappUrl) {
-    const itemsMarkup = cart.map((item) => `
-        <div class="summary-row">
-            <span>${escapeHtml(item.name)} x ${item.quantity}</span>
-            <strong>${formatPrice(item.price * item.quantity)}</strong>
-        </div>
-    `).join("");
-
-    confirmationContent.innerHTML = `
-        <p class="confirmation-meta">Thank you, <strong>${escapeHtml(orderDetails.name)}</strong>. Your order ID is <strong>${orderDetails.orderId}</strong>.</p>
-        <div class="summary-list">${itemsMarkup}</div>
-        <div class="summary-total">
-            <span>Grand Total</span>
-            <span>${formatPrice(calculateTotal())}</span>
-        </div>
-        <div class="address-box">
-            <strong>Deliver to:</strong><br>
-            ${escapeHtml(orderDetails.address)}<br>
-            <strong>Mobile:</strong> ${escapeHtml(orderDetails.mobile)}<br>
-            <strong>Payment:</strong> ${escapeHtml(orderDetails.payment)}<br>
-            ${orderDetails.instructions ? `<strong>Instructions:</strong> ${escapeHtml(orderDetails.instructions)}` : ""}
-        </div>
-        <a class="whatsapp-link" href="${whatsappUrl}" target="_blank" rel="noopener">
-            <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
-            Open WhatsApp Order
-        </a>
-    `;
-}
-
-function showModal() {
-    modalBackdrop.classList.add("show");
-    modalBackdrop.setAttribute("aria-hidden", "false");
-    document.body.classList.add("modal-open");
-}
-
-function resetOrderState() {
-    cart = [];
-    checkoutForm.reset();
-    formMessage.textContent = "";
-    renderCart();
-    renderProducts();
-    closeCartDrawer();
-    modalBackdrop.classList.remove("show");
-    modalBackdrop.setAttribute("aria-hidden", "true");
-    document.body.classList.remove("modal-open");
-}
-
-function handleOrderSubmit(event) {
-    event.preventDefault();
-    formMessage.textContent = "";
-
-    if (cart.length === 0) {
-        formMessage.textContent = "Please add at least one item before placing your order.";
-        return;
-    }
-
-    if (calculateTotal() < 200) {
-        formMessage.textContent = "Minimum delivery order is \u20B9200.";
-        return;
-    }
-
-    if (!checkoutForm.checkValidity()) {
-        formMessage.textContent = "Please complete all required fields with valid details.";
-        checkoutForm.reportValidity();
-        return;
-    }
-
-    const orderDetails = {
-        orderId: generateOrderId(),
-        name: document.getElementById("customerName").value.trim(),
-        mobile: document.getElementById("mobileNumber").value.trim(),
-        address: document.getElementById("deliveryAddress").value.trim(),
-        payment: new FormData(checkoutForm).get("paymentMethod"),
-        instructions: document.getElementById("specialInstructions").value.trim()
-    };
-
-    const whatsappUrl = createWhatsAppUrl(createOrderMessage(orderDetails));
-    buildConfirmation(orderDetails, whatsappUrl);
-    showModal();
-    window.open(whatsappUrl, "_blank", "noopener");
-}
-
-function loadReviews() {
-    try {
-        const savedReviews = JSON.parse(localStorage.getItem("friendsZoneReviews"));
-        reviews = Array.isArray(savedReviews) && savedReviews.length ? savedReviews : defaultReviews;
-    } catch {
-        reviews = defaultReviews;
-    }
-}
-
-function saveReviews() {
-    localStorage.setItem("friendsZoneReviews", JSON.stringify(reviews));
-}
-
-function renderStars(rating) {
-    return Array.from({ length: 5 }, (_, index) => (
-        `<i class="fa-${index < rating ? "solid" : "regular"} fa-star" aria-hidden="true"></i>`
-    )).join("");
-}
-
-function renderReviews() {
-    reviewList.innerHTML = reviews.map((review) => `
-        <article class="review-card">
-            <div class="review-top">
-                <strong>${escapeHtml(review.name)}</strong>
-                <span class="stars" aria-label="${review.rating} out of 5 stars">${renderStars(Number(review.rating))}</span>
-            </div>
-            <p>${escapeHtml(review.text)}</p>
-        </article>
-    `).join("");
-}
-
-function handleReviewSubmit(event) {
-    event.preventDefault();
-    reviewMessage.textContent = "";
-
-    if (!reviewForm.checkValidity()) {
-        reviewMessage.textContent = "Please add your name, rating, and review.";
-        reviewForm.reportValidity();
-        return;
-    }
-
-    const formData = new FormData(reviewForm);
-    reviews.unshift({
-        name: formData.get("reviewName").trim(),
-        rating: Number(formData.get("reviewRating")),
-        text: formData.get("reviewText").trim()
-    });
-    reviews = reviews.slice(0, 12);
-    saveReviews();
-    renderReviews();
-    reviewForm.reset();
-    reviewMessage.textContent = "Thanks! Your review is now visible.";
-}
+document.addEventListener("click", (event) => {
+  if (!event.target.closest(".topbar")) closeMenu();
+});
 
 categoryBar.addEventListener("click", (event) => {
-    const button = event.target.closest("[data-category]");
-    if (!button) return;
-    activeCategory = button.dataset.category;
-    renderCategories();
-    renderProducts();
+  const button = event.target.closest("[data-category]");
+  if (!button) return;
+  activeCategory = button.dataset.category;
+  renderCategories();
+  renderMenu();
 });
 
-productGrid.addEventListener("click", (event) => {
-    const button = event.target.closest("button[data-action]");
-    if (!button) return;
-
-    if (button.dataset.action === "add") {
-        addToCart(button.dataset.id);
-    } else {
-        updateQuantity(button.dataset.id, button.dataset.action);
-    }
+document.querySelector(".type-strip").addEventListener("click", (event) => {
+  const button = event.target.closest("[data-jump-category]");
+  if (!button) return;
+  activeCategory = button.dataset.jumpCategory;
+  searchInput.value = "";
+  renderCategories();
+  renderMenu();
+  document.getElementById("menu").scrollIntoView({ behavior: "smooth" });
 });
 
-cartItems.addEventListener("click", (event) => {
-    const removeButton = event.target.closest("[data-remove]");
-    const quantityButton = event.target.closest("button[data-action]");
-
-    if (removeButton) {
-        removeFromCart(removeButton.dataset.remove);
-    }
-
-    if (quantityButton) {
-        updateQuantity(quantityButton.dataset.id, quantityButton.dataset.action);
-    }
+menuGrid.addEventListener("click", (event) => {
+  const button = event.target.closest("[data-add]");
+  if (!button) return;
+  addToCart(button.dataset.add);
 });
 
-cartTrigger.addEventListener("click", openCart);
-closeCart.addEventListener("click", closeCartDrawer);
-cartDrawer.addEventListener("click", (event) => {
-    if (event.target === cartDrawer) {
-        closeCartDrawer();
-    }
-});
-checkoutForm.addEventListener("submit", handleOrderSubmit);
-continueShopping.addEventListener("click", resetOrderState);
-modalClose.addEventListener("click", resetOrderState);
-reviewForm.addEventListener("submit", handleReviewSubmit);
-
-document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape") {
-        closeCartDrawer();
-        if (modalBackdrop.classList.contains("show")) {
-            resetOrderState();
-        }
-    }
+cartList.addEventListener("click", (event) => {
+  const button = event.target.closest("[data-qty]");
+  if (!button) return;
+  changeQuantity(button.dataset.qty, Number(button.dataset.delta));
 });
 
-loadReviews();
+searchInput.addEventListener("input", renderMenu);
+
+orderForm.addEventListener("submit", (event) => {
+  event.preventDefault();
+  orderMessage.textContent = "";
+  const rows = getCartRows();
+  if (!rows.length) {
+    orderMessage.textContent = "Please add at least one item.";
+    return;
+  }
+  if (!orderForm.checkValidity()) {
+    orderMessage.textContent = "Please fill customer details correctly.";
+    orderForm.reportValidity();
+    return;
+  }
+  const data = new FormData(orderForm);
+  const text = createOrderText({
+    name: data.get("name").trim(),
+    phone: data.get("phone").trim(),
+    address: data.get("address").trim()
+  });
+  window.open(`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(text)}`, "_blank", "noopener");
+  orderMessage.textContent = "WhatsApp order message is ready.";
+});
+
 renderCategories();
-renderProducts();
+renderMenu();
 renderCart();
-renderReviews();
-
-
