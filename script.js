@@ -1,5 +1,6 @@
-const whatsappNumber = "917983868082";
-const fallbackImage = "assets/hero-food.png";
+const whatsappNumber = "917830143379";
+const minimumOrderAmount = 200;
+const fallbackImage = "https://unsplash.com/photos/a-table-topped-with-plates-of-food-and-drinks-ml49hEv55WI";
 
 const foodImages = {
   pizza: [
@@ -203,8 +204,16 @@ function renderCategories() {
 function getFilteredItems() {
   const query = searchInput.value.trim().toLowerCase();
   return menuItems.filter((item) => {
-    const categoryMatch = item.category === activeCategory;
-    const queryMatch = !query || `${item.name} ${item.category}`.toLowerCase().includes(query);
+    const categoryMatch = query ? true : item.category === activeCategory;
+    const searchableText = [
+      item.name,
+      item.category,
+      item.price,
+      `₹${item.price}`,
+      `rs ${item.price}`,
+      `rate ${item.price}`
+    ].join(" ").toLowerCase();
+    const queryMatch = !query || searchableText.includes(query);
     return categoryMatch && queryMatch;
   });
 }
@@ -341,6 +350,11 @@ orderForm.addEventListener("submit", (event) => {
   const rows = getCartRows();
   if (!rows.length) {
     orderMessage.textContent = "Please add at least one item.";
+    return;
+  }
+  const total = rows.reduce((sum, row) => sum + row.lineTotal, 0);
+  if (total < minimumOrderAmount) {
+    orderMessage.textContent = `Minimum order is ${rupees(minimumOrderAmount)}. Please add ${rupees(minimumOrderAmount - total)} more.`;
     return;
   }
   if (!orderForm.checkValidity()) {
