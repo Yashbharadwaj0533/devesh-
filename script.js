@@ -1,6 +1,6 @@
 const whatsappNumber = "917830143379";
 const minimumOrderAmount = 200;
-const fallbackImage = "https://unsplash.com/s/photos/food";
+const fallbackImage = "https://plus.unsplash.com/premium_photo-1673580742890-4af144293960?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTd8fGZvb2R8ZW58MHx8MHx8fDA%3D";
 
 const foodImages = {
   pizza: [
